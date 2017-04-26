@@ -8,7 +8,7 @@ from PIL import Image
 server_socket = socket.socket()
 server_socket.bind(('0.0.0.0', 8000))
 server_socket.listen(0)
-
+print('Waiting the Image data...')
 # Accept a single connection and make a file-like object out of it
 connection = server_socket.accept()[0].makefile('rb')
 try:
@@ -29,6 +29,8 @@ try:
         print('Image is %dx%d' % image.size)
         image.verify()
         print('Image is verified')
+        
 finally:
     connection.close()
     server_socket.close()
+print('End of the Image.')
